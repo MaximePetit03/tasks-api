@@ -2,7 +2,7 @@
 # tasks-api : fil rouge du cours GitOps & CI/CD
 
 Petite API Flask de gestion de tâches. On ne travaille pas sur l'application elle-même :
-c'est un **prétexte** pour apprendre à automatiser les tests, la construction et le déploiement.
+c'est un **prétexte** pour apprendre à automatiser les tests, la construction et le déploiement
 
 ## Démarrage
 
