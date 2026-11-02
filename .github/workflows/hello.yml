@@ -7,6 +7,6 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Bienvenue dans ce workflow GitHub Actions !"
-      - run: echo "Branche : ${{ github.ref_name }}"
-      - run: echo "Auteur du commit : ${{ github.actor }}"
+      - run: 'echo "Bienvenue dans ce workflow GitHub Actions !"'
+      - run: 'echo "Branche : ${{ github.ref_name }}"'
+      - run: 'echo "Auteur du commit : ${{ github.actor }}"'
