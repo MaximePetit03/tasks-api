@@ -1,6 +1,6 @@
 """Logique métier de l'application (fonctions pures, faciles à tester)."""
 
-MAX_TITLE_LENGTH = 100
+MAX_TITLE_LENGTH = 10
 
 def normalize_title(title: str) -> str:
     """Supprime les espaces en trop et met la première lettre en majuscule."""
