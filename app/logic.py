@@ -2,6 +2,7 @@
 
 MAX_TITLE_LENGTH = 100
 
+
 def normalize_title(title: str) -> str:
     """Supprime les espaces en trop et met la première lettre en majuscule."""
     cleaned = " ".join(title.split())
