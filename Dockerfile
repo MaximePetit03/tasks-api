@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # TODO 4 : copier le code de l'application
-COPY /app
+COPY . .
 
 # TODO 5 : créer un utilisateur non-root et basculer dessus (USER)
 RUN useradd -m appuser && chown -R appuser:appuser /app
