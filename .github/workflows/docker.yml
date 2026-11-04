@@ -100,7 +100,7 @@ jobs:
 
       - name: Déployer l'image du commit (SHA)
         run: |
-          IMAGE="ghcr.io/${{ steps.owner.outputs.owner }}/tasks-api:sha-${GITHUB_SHA:~0,7}"
+          IMAGE="ghcr.io/${{ steps.owner.outputs.owner }}/tasks-api:sha-${GITHUB_SHA:0:7}"
           docker run -d --name app-staging -p 8000:8000 "$IMAGE"
 
       - name: Test de fumée (Smoke tests)
