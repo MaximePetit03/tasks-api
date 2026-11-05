@@ -168,13 +168,6 @@ jobs:
         if: always()
         run: docker rm -f app-prod
 
-# CORRECTION FORMATEUR : TP4, partie 4, job update-config (à ajouter à la fin de docker.yml)
-# Réponses aux 5 trous :
-#   1. needs: deploy-production
-#   2. if: startsWith(github.ref, 'refs/tags/v')   (recopier la condition de deploy-production ; dans le dépôt de référence c'est 'refs/tags/v')
-#   3. repository: <compte>/tasks-config
-#   4. path: config
-#   5. git add k8s/deployment.yaml
   update-config:
     needs: deploy-production
     if: startsWith(github.ref, 'refs/tags/v')
