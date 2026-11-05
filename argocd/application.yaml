@@ -14,7 +14,7 @@ spec:
   source:                          # D'OÙ vient la configuration
     repoURL: https://github.com/maximepetit03/tasks-config.git   # le dépôt Git à surveiller : c'est lui la « vérité » (à remplacer)
     targetRevision: master           # la branche à suivre
-    path: config-repo/k8s                      # le dossier du dépôt qui contient les manifestes (deployment.yaml...)
+    path: k8s                      # le dossier du dépôt qui contient les manifestes (deployment.yaml...)
 
   destination:                     # OÙ on déploie
     server: https://kubernetes.default.svc   # « le cluster dans lequel Argo CD tourne » (le nôtre)
