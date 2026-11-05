@@ -186,7 +186,7 @@ jobs:
       - name: Récupérer le dépôt de configuration
         uses: actions/checkout@v6
         with:
-          repository: <compte>/tasks-config
+          repository: maximepetit03/tasks-config
           token: ${{ secrets.CONFIG_REPO_TOKEN }}
           path: config
 
