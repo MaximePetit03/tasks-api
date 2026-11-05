@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
       - name: Configurer Python
         uses: actions/setup-python@v5
