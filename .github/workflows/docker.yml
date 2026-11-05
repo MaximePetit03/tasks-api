@@ -178,20 +178,20 @@ jobs:
     permissions:
       contents: read
     env:
-      VERSION: ${{ github.ref_name }}   # ex. v0.2.0
+      VERSION: ${{ github.ref_name }}
     steps:
       - name: Récupérer le dépôt applicatif
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Récupérer le dépôt de configuration
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           repository: maximepetit03/tasks-config
           token: ${{ secrets.CONFIG_REPO_TOKEN }}
-          path: config-repo
+          path: config
 
       - name: Mettre à jour la version de l'image
-        run: bash scripts/set-image-tag.sh config-repo/k8s/deployment.yaml "${VERSION#v}"
+        run: bash scripts/set-image-tag.sh config/k8s/deployment.yaml "${VERSION#v}"
 
       - name: Commiter et pousser dans tasks-config
         run: |
