@@ -17,7 +17,7 @@ spec:
       containers:
         - name: tasks-api
           # À MODIFIER au jour 4 : remplacer <votre-compte-github> par votre identifiant (en minuscules)
-          image: ghcr.io/maximepetit03/tasks-api:0.1.0
+          image: ghcr.io/<votre-compte>/tasks-api:0.1.0
           ports:
             - containerPort: 8000
           env:
