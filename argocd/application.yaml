@@ -1,23 +1,29 @@
-# Jour 4 : décrit à Argo CD quel dépôt surveiller et où déployer.
-# À MODIFIER : remplacez <votre-compte-github> par votre identifiant GitHub (minuscules).
-# Appliquer avec : kubectl apply -f argocd/application.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+# ---------------------------------------------------------------------------
+# Ce fichier se lit UNE seule fois : kubectl apply -f argocd/application.yaml
+# Il crée dans le cluster un objet « Application » : une consigne donnée à Argo CD
+# qui dit « surveille CE dépôt Git et fais en sorte que le cluster lui ressemble ».
+# ---------------------------------------------------------------------------
+apiVersion: argoproj.io/v1alpha1   # famille d'objets qu'Argo CD a ajoutée à Kubernetes
+kind: Application                  # le type d'objet : une application à déployer et à surveiller
 metadata:
-  name: tasks-api
-  namespace: argocd
+  name: tasks-api                  # le nom affiché dans l'interface d'Argo CD
+  namespace: argocd                # cet objet est rangé dans le namespace d'Argo CD (c'est là qu'il le cherche)
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/maximepetit03/tasks-config.git
-    targetRevision: master
-    path: k8s
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: tasks
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  project: default                 # groupe de réglages d'Argo CD : on garde celui par défaut
+
+  source:                          # D'OÙ vient la configuration
+    repoURL: https://github.com/maximepetit03/tasks-config.git   # le dépôt Git à surveiller : c'est lui la « vérité » (à remplacer)
+    targetRevision: master           # la branche à suivre
+    path: k8s                      # le dossier du dépôt qui contient les manifestes (deployment.yaml...)
+
+  destination:                     # OÙ on déploie
+    server: https://kubernetes.default.svc   # « le cluster dans lequel Argo CD tourne » (le nôtre)
+    namespace: tasks               # le namespace (« dossier ») où les pods seront créés.
+                                   # C'est ICI que « tasks » est défini : Argo CD le crée grâce à CreateNamespace=true plus bas.
+
+  syncPolicy:                      # COMMENT on synchronise
+    automated:                     # sans qu'on clique : Argo CD applique tout seul ce qu'il voit dans Git
+      prune: true                  # si on supprime un fichier dans Git, Argo CD supprime la ressource correspondante
+      selfHeal: true               # si quelqu'un modifie le cluster à la main, Argo CD remet l'état de Git (auto-guérison)
     syncOptions:
-      - CreateNamespace=true
+      - CreateNamespace=true       # crée le namespace « tasks » s'il n'existe pas encore
