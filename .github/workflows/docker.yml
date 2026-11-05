@@ -188,10 +188,10 @@ jobs:
         with:
           repository: maximepetit03/tasks-config
           token: ${{ secrets.CONFIG_REPO_TOKEN }}
-          path: config
+          path: config-repo
 
       - name: Mettre à jour la version de l'image
-        run: bash scripts/set-image-tag.sh config/k8s/deployment.yaml "${VERSION#v}"
+        run: bash scripts/set-image-tag.sh config-repo/k8s/deployment.yaml "${VERSION#v}"
 
       - name: Commiter et pousser dans tasks-config
         run: |
